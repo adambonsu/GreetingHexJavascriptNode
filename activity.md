@@ -70,6 +70,34 @@ app.listen(3000, () => {
 });
 ```
 
+Serve the app from `server.js`
+
+```js
+const app = require("./app");
+app.listen(3000, () => {
+  console.log("Server is now running");
+});
+```
+
+Update `app.js`
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+module.exports = app;
+```
+
+Serve app
+
+```bash
+node server.js
+```
+
 Install jest
 
 ```bash

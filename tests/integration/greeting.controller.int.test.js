@@ -2,8 +2,8 @@ const request = require("supertest");
 const app = require("../../app");
 const endpointUrl = "/greeting";
 
-describe(endpointUrl, () => {
-  test("GET" + endpointUrl, async () => {
+describe("Greeting endpoint", () => {
+  test("GET /greeting returns 200 with list of greetings", async () => {
     const response = await request(app).get(endpointUrl);
     expect(response.statusCode).toBe(200);
     expect(typeof response.body).toBe("object");

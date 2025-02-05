@@ -1,5 +1,5 @@
 const greetingController = require("../../controllers/greeting.controller");
-httpMocks = require("node-mocks-http");
+const httpMocks = require("node-mocks-http");
 
 let req, res, next;
 

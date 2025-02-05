@@ -1,5 +1,6 @@
 {
   "name": "greetinghexjavascriptnode",
+  "type": "commonjs",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -19,6 +20,8 @@
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "eslint": "^9.19.0",
+    "eslint-plugin-jest": "^28.11.0",
+    "eslint-plugin-jest-dom": "^5.5.0",
     "globals": "^15.14.0",
     "jest": "^29.7.0",
     "supertest": "^7.0.0"

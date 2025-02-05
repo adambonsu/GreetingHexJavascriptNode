@@ -1,10 +1,22 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
+import jestPlugin from "eslint-plugin-jest";
 
-
-/** @type {import('eslint').Linter.Config[]} */
 export default [
-  {files: ["**/*.js"], languageOptions: {sourceType: "commonjs"}},
-  {languageOptions: { globals: globals.browser }},
+  {
+    files: ["**/*.js"],
+    ignores: ["eslint.config.mjs"], // Exclude config from linting
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+    },
+  },
+  {
+    files: ["tests/**/*.js"],
+    ...jestPlugin.configs["flat/recommended"],
+  },
   pluginJs.configs.recommended,
 ];

@@ -1,0 +1,17 @@
+name: CI
+run-name: "CI run by @${{ github.actor }}, event: ${{ github.event_name }}"
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  linting:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/linting.yml
+  run-functional-tests:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/functional-tests.yml

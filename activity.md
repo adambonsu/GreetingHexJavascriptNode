@@ -76,7 +76,7 @@ Install jest
 npm install jest --save-dev
 ```
 
-Run all tess
+Run all tests
 
 ```bash
 npm run test

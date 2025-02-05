@@ -10,12 +10,12 @@ beforeEach(() => {
 });
 
 describe("GreetingController.getGreeting", () => {
-  it("should return a response code of 200", () => {
-    greetingController.getGreeting(req, res, next);
+  it("should return a response code of 200", async () => {
+    await greetingController.getGreeting(req, res, next);
     expect(res.statusCode).toBe(200);
   });
-  it("should return list of Greetings", () => {
-    greetingController.getGreeting(req, res, next);
+  it("should return list of Greetings", async () => {
+    await greetingController.getGreeting(req, res, next);
     expect(res._getJSONData().length).toBeGreaterThan(0);
   });
 });

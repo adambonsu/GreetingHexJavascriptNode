@@ -10,7 +10,7 @@ exports.getGreeting = async (req, res) => {
     const greetings = JSON.parse(data);
     return res.status(200).json(greetings);
   } catch (error) {
-    if (err.code === "ENOENT") {
+    if (error.code === "ENOENT") {
       return res.status(500).json({ error: "Greetings data file not found" });
     }
     return res.status(500).json({

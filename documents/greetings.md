@@ -1,7 +1,7 @@
 # General information:
 
-- Title: Greeting List
-- Description: Present list of greetings
+- Title: Greetings
+- Description: List of greetings
 
 # Servers:
 

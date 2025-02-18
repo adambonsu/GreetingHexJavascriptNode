@@ -43,4 +43,4 @@ We need to create a service informing clients on how to greet:
 
 5. Delete an existing greeting by Id
 
-6. Login
+6. User Authentication

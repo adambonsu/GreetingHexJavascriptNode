@@ -1,0 +1,5 @@
+openapi: 3.0.3
+info:
+  title: Greeting List
+  description: Present list of greetings
+  version: 1.0.0

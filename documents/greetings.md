@@ -44,7 +44,7 @@
 - Status code: 200
 - Status message: Ok
 - Content Type: application/json
-- Schema: array {id, message, createdAt, updatedAt, languageFamily, language, information}
+- Schema: array {id, message, createdAt, updatedAt, formal, languageFamily, language, information}
 
 ---
 
@@ -79,7 +79,7 @@
 - Status code: 200
 - Status message: Ok
 - Content Type: application/json
-- Schema: array {id, message, createdAt, updatedAt, languageFamily, language, information}
+- Schema: array {id, message, createdAt, updatedAt, formal, languageFamily, language, information}
 
 ---
 
@@ -113,14 +113,14 @@
 
 - Content Type: application/json
 - Required: all
-- Schema: greeting, createdAt, updatedAt, languageFamily, language, information
+- Schema: greeting, createdAt, updatedAt, formal, languageFamily, language, information
 
 ### Response body definitions
 
 - Status code: 201
 - Status message: Ok
 - Content Type: application/json
-- Schema: id, message, createdAt, updatedAt, languageFamily, language, information
+- Schema: id, message, createdAt, updatedAt, formal, languageFamily, language, information
 
 ---
 
@@ -161,14 +161,14 @@
 
 - Content Type: application/json
 - Required: all
-- Schema: greeting, createdAt, updatedAt, languageFamily, language, information
+- Schema: greeting, createdAt, updatedAt, formal, languageFamily, language, information
 
 ### Response body definitions
 
 - Status code: 202
 - Status message: Accepted
 - Content Type: application/json
-- Schema: array {id, message, createdAt, updatedAt, languageFamily, language, information}
+- Schema: array {id, message, createdAt, updatedAt, formal, languageFamily, language, information}
 
 ---
 

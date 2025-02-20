@@ -283,6 +283,9 @@ components:
         language:
           type: string
           example: "Swedish"
+        formal:
+          type: boolean
+          example: false
         information:
           type: string
           example: "Scandinavian languages often use variations of 'Hej' to greet others"
@@ -312,6 +315,9 @@ components:
         language:
           type: string
           example: "Swedish"
+        formal:
+          type: boolean
+          example: false
         information:
           type: string
           example: "Scandinavian languages often use variations of 'Hej' to greet others"

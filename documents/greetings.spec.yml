@@ -17,7 +17,7 @@ tags:
 paths:
   /greetings:
     get:
-      summary: Get all greetings.
+      summary: Get all greetings
       tags:
         - Greetings
       security:
@@ -43,7 +43,7 @@ paths:
               schema:
           $ref: "#/components/responses/InternalServerError"
     post:
-      summary: Create a greeting.
+      summary: Create a greeting
       tags:
         - Greetings
       security:
@@ -61,28 +61,28 @@ paths:
           content:
             application/json:
               schema:
-          $ref: "#/components/responses/SuccessGetAllGreetings"
+          $ref: "#/components/responses/SuccessGetGreetingById"
         400:
-          description: Bad request.
+          description: Bad request
           content:
             application/json:
               schema:
           $ref: "#/components/responses/BadRequestError"
         401:
-          description: Unauthorised.
+          description: Unauthorised
           content:
             application/json:
               schema:
           $ref: "#/components/responses/UnauthorisedError"
         500:
-          description: Internal server error.
+          description: Internal server error
           content:
             application/json:
               schema:
           $ref: "#/components/responses/InternalServerError"
   /greeting/{id}:
     get:
-      summary: Get greeting by id.
+      summary: Get greeting by id
       tags:
         - Greetings
       security:
@@ -102,27 +102,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/SuccessGetGreetingById"
+          $ref: "#/components/responses/SuccessGetGreetingById"
         401:
           description: Unauthorised
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/UnauthorisedError"
+          $ref: "#/components/responses/UnauthorisedError"
         404:
           description: Not found
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/NotFoundError"
+          $ref: "#/components/responses/NotFoundError"
         500:
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/InternalServerError"
+          $ref: "#/components/responses/InternalServerError"
     put:
-      summary: Update greeting by id.
+      summary: Update greeting by id
       tags:
         - Greetings
       security:
@@ -150,31 +150,31 @@ paths:
               schema:
                 $ref: "#/components/responses/Accepted"
         400:
-          description: Bad request.
+          description: Bad request
           content:
             application/json:
               schema:
                 $ref: "#/components/responses/BadRequestError"
         401:
-          description: Unauthorised.
+          description: Unauthorised
           content:
             application/json:
               schema:
           $ref: "#/components/responses/UnauthorisedError"
         404:
-          description: Not found.
+          description: Not found
           content:
             application/json:
               schema:
           $ref: "#/components/responses/NotFoundError"
         500:
-          description: Internal server error.
+          description: Internal server error
           content:
             application/json:
               schema:
           $ref: "#/components/responses/InternalServerError"
     delete:
-      summary: Delete greeting by id.
+      summary: Delete greeting by id
       tags:
         - Greetings
       security:
@@ -196,19 +196,19 @@ paths:
               schema:
           $ref: "#/components/responses/Accepted"
         401:
-          description: Unauthorised.
+          description: Unauthorised
           content:
             application/json:
               schema:
           $ref: "#/components/responses/UnauthorisedError"
         404:
-          description: Not found.
+          description: Not found
           content:
             application/json:
               schema:
           $ref: "#/components/responses/NotFoundError"
         500:
-          description: Internal server error.
+          description: Internal server error
           content:
             application/json:
               schema:
@@ -238,25 +238,25 @@ components:
             type: object
             $ref: "#/components/schemas/Greeting"
     UnauthorisedError:
-      description: Unauthorised.
+      description: Unauthorised
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/UnauthorisedError"
     BadRequestError:
-      description: Bad request.
+      description: Bad request
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/BadRequestError"
     NotFoundError:
-      description: Not found.
+      description: Not found
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/NotFoundError"
     InternalServerError:
-      description: Internal server error.
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -268,6 +268,7 @@ components:
       properties:
         message:
           type: string
+          description: "The greeting message"
           example: "Hej"
         createdAt:
           type: string
@@ -285,6 +286,7 @@ components:
           example: "Swedish"
         formal:
           type: boolean
+          description: "Indicates if the greeting is formal or informal"
           example: false
         information:
           type: string

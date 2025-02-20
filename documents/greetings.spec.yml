@@ -383,3 +383,9 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: >
+        A JSON Web Token (JWT) is required for authentication. The token should be included 
+        in the Authorization header using the Bearer scheme. The JWT must be obtained from 
+        the authentication endpoint (not described in this API) and should contain the necessary 
+        claims to authorize access to the API endpoints. The token is expected to be signed and 
+        may include expiration information. Example: 'Authorization: Bearer <token>'

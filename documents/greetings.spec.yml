@@ -25,29 +25,236 @@ paths:
       operationId: getAllGreetings
       responses:
         200:
+          description: Ok
+          content:
+            application/json:
+              schema:
           $ref: "#/components/responses/SuccessGetAllGreetings"
         401:
+          description: Unauthorised
+          content:
+            application/json:
+              schema:
           $ref: "#/components/responses/UnauthorisedError"
         500:
           description: Internal server error
+          content:
+            application/json:
+              schema:
           $ref: "#/components/responses/InternalServerError"
-
+    post:
+      summary: Create a greeting.
+      tags:
+        - Greetings
+      security:
+        - bearerAuth: []
+      operationId: createGreeting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewGreeting"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/SuccessGetAllGreetings"
+        400:
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/BadRequestError"
+        401:
+          description: Unauthorised.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/UnauthorisedError"
+        500:
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/InternalServerError"
+  /greeting/{id}:
+    get:
+      summary: Get greeting by id.
+      tags:
+        - Greetings
+      security:
+        - bearerAuth: []
+      operationId: getGreetingById
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of the greeting
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/SuccessGetGreetingById"
+        401:
+          description: Unauthorised
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/UnauthorisedError"
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/NotFoundError"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/InternalServerError"
+    put:
+      summary: Update greeting by id.
+      tags:
+        - Greetings
+      security:
+        - bearerAuth: []
+      operationId: updateGreetingById
+      parameters:
+        - name: id
+          in: path
+          description: ID of greeting to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewGreeting"
+      responses:
+        202:
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Accepted"
+        400:
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/BadRequestError"
+        401:
+          description: Unauthorised.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/UnauthorisedError"
+        404:
+          description: Not found.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/NotFoundError"
+        500:
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      summary: Delete greeting by id.
+      tags:
+        - Greetings
+      security:
+        - bearerAuth: []
+      operationId: deleteGreetingById
+      parameters:
+        - name: id
+          in: path
+          description: ID of greeting to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        202:
+          description: Accepted
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/Accepted"
+        401:
+          description: Unauthorised.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/UnauthorisedError"
+        404:
+          description: Not found.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/NotFoundError"
+        500:
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+          $ref: "#/components/responses/InternalServerError"
 components:
   responses:
+    Accepted:
+      description: Ok
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: "#/components/schemas/Greeting"
     SuccessGetAllGreetings:
-      description: Successful response.
+      description: Ok
       content:
         application/json:
           schema:
             type: array
             items:
               $ref: "#/components/schemas/Greeting"
+    SuccessGetGreetingById:
+      description: Ok
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: "#/components/schemas/Greeting"
     UnauthorisedError:
       description: Unauthorised.
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Unauthorised"
+            $ref: "#/components/schemas/UnauthorisedError"
+    BadRequestError:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BadRequestError"
+    NotFoundError:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/NotFoundError"
     InternalServerError:
       description: Internal server error.
       content:
@@ -56,6 +263,31 @@ components:
             $ref: "#/components/schemas/InternalServerError"
 
   schemas:
+    NewGreeting:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Hej"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2022-01-01T00:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2022-01-02T20:30:45Z"
+        languageFamily:
+          type: string
+          example: "Nordic"
+        language:
+          type: string
+          example: "Swedish"
+        information:
+          type: string
+          example: "Scandinavian languages often use variations of 'Hej' to greet others"
+      required:
+        - message
     Greeting:
       type: object
       properties:
@@ -86,7 +318,20 @@ components:
       required:
         - id
         - message
-    Unauthorised:
+    BadRequestError:
+      required:
+        - statusCode
+        - message
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+          example: 400
+        message:
+          type: string
+          example: "Bad request"
+    UnauthorisedError:
       required:
         - statusCode
         - message
@@ -99,6 +344,19 @@ components:
         message:
           type: string
           example: "Unauthorised"
+    NotFoundError:
+      required:
+        - statusCode
+        - message
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+          example: 404
+        message:
+          type: string
+          example: "Not found"
     InternalServerError:
       required:
         - statusCode

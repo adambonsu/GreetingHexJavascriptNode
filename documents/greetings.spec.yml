@@ -11,14 +11,26 @@ servers:
     description: Staging Server
   - url: http://localhost:8080/v1
     description: Developer Server
-
+tags:
+  - name: Greetings
+    description: Greeting operations
 paths:
   /greetings:
     get:
       summary: Get all greetings.
+      tags:
+        - Greetings
+      security:
+        - bearerAuth: []
+      operationId: getAllGreetings
       responses:
-        "200":
+        200:
           $ref: "#/components/responses/SuccessGetAllGreetings"
+        401:
+          $ref: "#/components/responses/UnauthorisedError"
+        500:
+          description: Internal server error
+          $ref: "#/components/responses/InternalServerError"
 
 components:
   responses:
@@ -30,6 +42,19 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Greeting"
+    UnauthorisedError:
+      description: Unauthorised.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Unauthorised"
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/InternalServerError"
+
   schemas:
     Greeting:
       type: object
@@ -61,3 +86,34 @@ components:
       required:
         - id
         - message
+    Unauthorised:
+      required:
+        - statusCode
+        - message
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+          example: 401
+        message:
+          type: string
+          example: "Unauthorised"
+    InternalServerError:
+      required:
+        - statusCode
+        - message
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+          example: 500
+        message:
+          type: string
+          example: "Internal server error"
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

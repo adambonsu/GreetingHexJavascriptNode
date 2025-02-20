@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: Greeting List
+  description: List of greetings
+  version: 1.0.0
+
+servers:
+  - url: http://api.adambonsu.io/v1
+    description: Production server
+  - url: http://staging-api.adambonsu.io/v1
+    description: Staging Server
+  - url: http://localhost:8080/v1
+    description: Developer Server
+
+paths:
+  /greetings:
+    get:
+      summary: Get all greetings.
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessGetAllGreetings"
+
+components:
+  responses:
+    SuccessGetAllGreetings:
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Greeting"
+  schemas:
+    Greeting:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        message:
+          type: string
+          example: "Hej"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2022-01-01T00:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2022-01-02T20:30:45Z"
+        languageFamily:
+          type: string
+          example: "Nordic"
+        language:
+          type: string
+          example: "Swedish"
+        information:
+          type: string
+          example: "Scandinavian languages often use variations of 'Hej' to greet others"
+      required:
+        - id
+        - message

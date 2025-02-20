@@ -23,6 +23,162 @@ paths:
       security:
         - bearerAuth: []
       operationId: getAllGreetings
+      parameters:
+        - name: language
+          in: query
+          description: Filter greetings by language
+          schema:
+            type: string
+            enum:
+              - en
+              - es
+              - fr
+              - de
+              - it
+              - pt
+              - ru
+              - zh
+              - ja
+              - ko
+              - ar
+              - hi
+              - bn
+              - ur
+              - fa
+              - sw
+              - ta
+              - te
+              - ml
+              - ne
+              - gu
+              - mr
+              - pa
+              - sa
+              - mn
+              - km
+              - kh
+              - lo
+              - th
+              - vi
+              - km
+              - id
+              - ms
+              - tl
+              - jw
+              - su
+              - hmn
+              - az
+              - gu
+              - fa
+              - ur
+              - ar
+        - name: languageFamily
+          in: query
+          description: Filter greetings by language family
+          schema:
+            type: string
+            enum:
+              - latin
+              - cyrillic
+              - greek
+              - cjk
+              - arabic
+              - hebrew
+              - devanagari
+              - cyrillic-ext
+              - vietnamese
+              - thai
+              - latin-ext
+              - chinese
+              - japanese
+              - korean
+              - hindi
+              - telugu
+              - tamil
+              - kannada
+              - oriya
+              - bengali
+              - gujarati
+              - punjabi
+              - malayalam
+              - nepali
+              - marathi
+              - panjabi
+              - sinhala
+              - burmese
+              - serbian
+              - khmer
+              - lao
+              - myanmar
+              - tibetan
+              - mongolian
+              - haitian
+              - uzbek
+              - kazakh
+              - kyrgyz
+              - turkmen
+              - azerbaijan
+              - armenian
+              - georgian
+              - macedonian
+              - hebrew
+              - syriac
+              - thaana
+              - devanagari-ext
+              - bengali-ext
+              - gurmukhi
+              - tamil-ext
+              - kannada-ext
+              - malayalam-ext
+              - oriya-ext
+              - sinhala-ext
+              - khmer-ext
+              - lao-ext
+              - myanmar-ext
+              - mongolian-ext
+              - tibetan-ext
+              - mongolian-ext
+              - mongolian-ext
+        - name: formal
+          in: query
+          description: Filter greetings by formal or informal
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          description: Sort greetings by field (prefix with '-' for descending order)
+          schema:
+            type: string
+            enum:
+              [
+                message,
+                language,
+                languageFamily,
+                createdAt,
+                updatedAt,
+                -message,
+                -language,
+                -languageFamily,
+                -createdAt,
+                -updatedAt,
+              ]
+        - name: limit
+          in: query
+          description: Limit the number of greetings returned
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: Number of greetings to skip for pagination
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
       responses:
         200:
           description: Ok

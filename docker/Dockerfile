@@ -10,6 +10,9 @@ COPY . .
 
 COPY api/greetings.spec.yml /usr/src/app/api/greetings.spec.yml
 
+RUN whoami > /usr/src/app/user.txt
+RUN ls -lR /usr/src/app/api/
+
 RUN npm install swagger-ui-express
 
 EXPOSE 3000

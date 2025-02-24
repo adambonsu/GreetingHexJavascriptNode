@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ..
+      secrets:
+        - GITHUB_USERNAME
+        - GITHUB_PERSONAL_ACCESS_TOKEN
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/usr/src/app/api:rw
+secrets:
+  GITHUB_USERNAME:
+    environment: GITHUB_USERNAME
+  GITHUB_PERSONAL_ACCESS_TOKEN:
+    environment: GITHUB_PERSONAL_ACCESS_TOKEN

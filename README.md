@@ -28,23 +28,39 @@ PORT=3000
 JWT_SECRET=YOUR_JWT_SECRET
 ```
 
+Load the environment variables into your shell
+`set -a; source .env; set +a`
+
 ## Build
 
 To build the docker image:
 
 ```bash
-docker build -t greeting-hex-javascript-node .
+docker build \
+  -f ./docker/Dockerfile \
+  -t greeting-hex-javascript-node:$(git rev-parse HEAD) \
+  ./
 
 ```
 
 ## Run
 
+Clear any open instances and images with `rm -vf $(docker ps -aq); docker rmi -f $(docker images -aq)`
+
 ### Using Docker Compose
 
 1. Start the application:
+   Using docker
 
 ```bash
-docker-compose up
+docker run -p 3000:3000 greeting-hex-javascript-node:$(git rev-parse HEAD)
+
+```
+
+Or using docker-compose
+
+```bash
+docker-compose -f ./docker/docker-compose.yml up --build
 
 ```
 

@@ -87,6 +87,8 @@ docker push 757721680185.dkr.ecr.eu-west-2.amazonaws.com/greeting-hex-javascript
 
 NB: If you encounter a `no basic auth credentials` error run this `eval $( aws ecr get-login --no-include-email --region eu-west-2 )` before attempting to push again
 
+NB: If you encounter a `denied: Your authorization token has expired. Reauthenticate and try again.` error, run this `aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 757721680185.dkr.ecr.eu-west-2.amazonaws.com` before attempting to push again
+
 ### Download image from registry
 
 ```bash

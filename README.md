@@ -23,7 +23,10 @@ cd GreetingHexJavascriptNode
 
 3. Create a `.env` file in the project root and add necessary environment variables:
 
-```
+```yaml
+AWS_PROFILE=greeting-hex-javascript-node
+ECR_SERVER=757721680185.dkr.ecr.eu-west-2.amazonaws.com
+ECR_REGISTRY=${ECR_SERVER}/greeting-hex-javascript-node
 PORT=3000
 JWT_SECRET=YOUR_JWT_SECRET
 ```
@@ -69,12 +72,10 @@ docker-compose -f ./docker/docker-compose.yml up --build
 
 ## ECR
 
-Registry URI: `757721680185.dkr.ecr.eu-west-2.amazonaws.com/greeting-hex-javascript-node`
-
 1. Tag the image
 
 ```bash
-docker tag greeting-hex-javascript-node:$(git rev-parse HEAD) 757721680185.dkr.ecr.eu-west-2.amazonaws.com/greeting-hex-javascript-node:$(git rev-parse HEAD)
+docker tag greeting-hex-javascript-node:$(git rev-parse HEAD) ${ECR_REGISTRY}:$(git rev-parse HEAD)
 ```
 
 2. Push tagged image to ECR
@@ -82,17 +83,24 @@ docker tag greeting-hex-javascript-node:$(git rev-parse HEAD) 757721680185.dkr.e
 
 ```bash
 aws ecr get-login --no-include-email --region eu-west-2
-docker push 757721680185.dkr.ecr.eu-west-2.amazonaws.com/greeting-hex-javascript-node:$(git rev-parse HEAD)
+docker push ${ECR_REGISTRY}:$(git rev-parse HEAD)
 ```
 
 NB: If you encounter a `no basic auth credentials` error run this `eval $( aws ecr get-login --no-include-email --region eu-west-2 )` before attempting to push again
 
 NB: If you encounter a `denied: Your authorization token has expired. Reauthenticate and try again.` error, run this `aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 757721680185.dkr.ecr.eu-west-2.amazonaws.com` before attempting to push again
 
+### Delete local image from local repository
+
+```bash
+docker rmi ${ECR_REGISTRY}:$(git rev-parse HEAD)
+```
+
 ### Download image from registry
 
 ```bash
 aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+docker pull ${ECR_REGISTRY}:$(git rev-parse HEAD)
 
 ```
 
@@ -100,15 +108,19 @@ aws ecr get-login-password --region eu-west-2 | docker login --username AWS --pa
 
 ### Set up environment
 
-Update the `container_image` in [the dev environment](./terraform/environments/dev/main.tf) to match the image pushed to the ECR
+Update the `container_image` in [the dev environment](./terraform/environments/dev/main.tf) to match the image pushed to the ECR - e.g `757721680185.dkr.ecr.eu-west-2.amazonaws.com/greeting-hex-javascript-node:76d8143ae36351f8d74f32ddcc16757463496bc9`
 Via the terminal launch the environment in the cloud:
 
 ```bash
+aws configure --profile greeting-hex-javascript-node
+
+aws ecr get-login-password --region eu-west-2 --profile greeting-hex-javascript-node | docker login --username AWS --password-stdin ${ECR_SERVER}
+
 cd terraform/environments/production/
 tfswitch # select the latest terraform version
-terraform init
-terraform plan
-terraform apply --auto-approve
+AWS_PROFILE=greeting-hex-javascript-node terraform init
+AWS_PROFILE=greeting-hex-javascript-node terraform plan
+AWS_PROFILE=greeting-hex-javascript-node terraform apply --auto-approve
 
 ```
 

@@ -2,7 +2,7 @@ fileignoreconfig:
   - filename: package-lock.json
     checksum: a2ff0979c4c48d5d8df070366b30f4dca08164d41a0df50e41da2811731e52ad
   - filename: README.md
-    checksum: 6305009e4487761ca3b5155f806d5eff4ddbe37d8bb142fb1a1bf4370f6f8f97
+    checksum: ccc17022a4cccea771acc5e720f9df216d4600355deccd26c8375c39e347aa28
   - filename: terraform/environment/production/main.tf
     checksum: fd0c7bf8b818adeb36e9a0a71b65b42b741977160cedc7928bb85bc56cbf1be6
   - filename: terraform/environments/production/.terraform.lock.hcl

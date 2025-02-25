@@ -33,6 +33,8 @@ module "ecs" {
     execution_role_arn = "arn:aws:iam::757721680185:role/ecsTaskExecutionRole"
     public_subnet_ids = module.vpc.public_subnet_ids
     vpc_id = module.vpc.vpc_id
+    region = "eu-west-2"
+    aws_cloudwatch_log_retention_in_days = 30
 }
 
 variable "container_image" {

@@ -64,10 +64,24 @@ resource "aws_ecs_task_definition" "this" {
                     hostPort = var.aws_security_group_port
                 }
             ]
+            logConfiguration = {
+                logDriver = "awslogs"
+                options = {
+                    awslogs-create-group = "true"
+                    awslogs-group         = aws_cloudwatch_log_group.ecs_logs.name
+                    awslogs-region        = var.region
+                    awslogs-stream-prefix = "ecs"
+                }
+            }
         }
     ])
 
     execution_role_arn = var.execution_role_arn
+}
+
+resource "aws_cloudwatch_log_group" "ecs_logs" {
+  name              = "/ecs/${var.aws_ecs_task_definition_family}"
+  retention_in_days = var.aws_cloudwatch_log_retention_in_days
 }
 
 resource "aws_lb" "this" {

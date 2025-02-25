@@ -13,6 +13,11 @@ variable "aws_ecs_cluster_name" {
     type        = string
 }
 
+variable "region" {
+    description = "Region"
+    type        = string
+}
+
 variable "aws_ecs_task_definition_family" {
     description = "Task Definition Family"
     type        = string
@@ -80,5 +85,10 @@ variable "aws_ecs_task_definition_memory" {
 
 variable "aws_ecs_task_definition_cpu" {
     description = "Memory"
+    type        = number
+}
+
+variable "aws_cloudwatch_log_retention_in_days" {
+    description = "Cloudwatch Log Retention in days"
     type        = number
 }

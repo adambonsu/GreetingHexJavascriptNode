@@ -5,4 +5,8 @@ fileignoreconfig:
     checksum: 6305009e4487761ca3b5155f806d5eff4ddbe37d8bb142fb1a1bf4370f6f8f97
   - filename: terraform/environment/production/main.tf
     checksum: fd0c7bf8b818adeb36e9a0a71b65b42b741977160cedc7928bb85bc56cbf1be6
+  - filename: terraform/environments/production/.terraform.lock.hcl
+    checksum: f54bf47fe7462489e609ab11a9c7872017344c86baa9502da365bd1f3ef19558
+  - filename: .gitignore
+    checksum: 2b82df4aec9bfb16f3ce353b9fefcca9285351c28367e4aeb741475a3a710381
     version: ""

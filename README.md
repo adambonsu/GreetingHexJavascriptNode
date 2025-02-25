@@ -104,7 +104,7 @@ Update the `container_image` in [the dev environment](./terraform/environments/d
 Via the terminal launch the environment in the cloud:
 
 ```bash
-cd terraform/environments/dev/
+cd terraform/environments/production/
 tfswitch # select the latest terraform version
 terraform init
 terraform plan

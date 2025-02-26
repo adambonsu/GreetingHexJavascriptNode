@@ -13,6 +13,6 @@ mvn dependency:resolve
 Run tests
 
 ```bash
-mvn test
+mvn clean test
 
 ```

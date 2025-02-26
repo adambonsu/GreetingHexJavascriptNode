@@ -29,7 +29,11 @@ public class GreetingsTest {
 		.when()
 			.get("/greetings")
 		.then()
-			.statusCode(200);
+			.statusCode(200)
+			.contentType(ContentType.JSON)
+			.body("$",  hasSize(greaterThanOrEqualTo(1)))
+			.body("[0]", hasKey("id"))
+			.body("[0]", hasKey("message"));
 			
 			
 		

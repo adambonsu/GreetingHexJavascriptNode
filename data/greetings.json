@@ -1,1 +1,5 @@
-[{ "greeting": "Hello" }, { "greeting": "Hi" }, { "greeting": "Howdy" }]
+[
+  { "id": 1, "message": "Hello" },
+  { "id": 2, "message": "Hi" },
+  { "id": 3, "message": "Howdy" }
+]

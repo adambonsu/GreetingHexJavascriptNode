@@ -48,7 +48,7 @@ docker build \
 
 ## Run
 
-Clear any open instances and images with `rm -vf $(docker ps -aq); docker rmi -f $(docker images -aq)`
+Clear any open instances and images with `docker rm -vf $(docker ps -aq); docker rmi -f $(docker images -aq)`
 
 ### Using Docker Compose
 

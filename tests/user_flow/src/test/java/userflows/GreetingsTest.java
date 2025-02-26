@@ -33,7 +33,44 @@ public class GreetingsTest {
 			.contentType(ContentType.JSON)
 			.body("$",  hasSize(greaterThanOrEqualTo(1)))
 			.body("[0]", hasKey("id"))
-			.body("[0]", hasKey("message"));
+			.body("[0].id", isA(Integer.class))
+			.body("[0]", hasKey("message"))
+			.body("[0].message", allOf(isA(String.class), not(emptyString())))
+			.body("[0]", anyOf(
+							hasKey("language"),
+							not(hasKey("language")
+						)
+			))
+			.body("[0]", anyOf(
+					hasKey("languageFamily"),
+					not(hasKey("languageFamily")
+				)
+
+			))
+			.body("[0]", anyOf(
+					hasKey("languageFamilySubgroup"),
+					not(hasKey("languageFamilySubgroup")
+				)
+
+			))
+			.body("[0]", anyOf(
+					hasKey("formal"),
+					not(hasKey("formal")
+				)
+
+			))
+			.body("[0]", anyOf(
+					hasKey("createdAt"),
+					not(hasKey("createdAt")
+				)
+
+			))
+			.body("[0]", anyOf(
+					hasKey("updatedAt"),
+					not(hasKey("updatedAt")
+				)
+
+			));
 			
 			
 		

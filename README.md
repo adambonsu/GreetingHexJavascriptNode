@@ -56,7 +56,7 @@ Clear any open instances and images with `docker rm -vf $(docker ps -aq); docker
    Using docker
 
 ```bash
-docker run -p 3000:3000 greeting-hex-javascript-node:$(git rev-parse HEAD)
+docker run --rm -p 3000:3000 greeting-hex-javascript-node:$(git rev-parse HEAD)
 
 ```
 

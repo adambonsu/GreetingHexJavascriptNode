@@ -78,6 +78,8 @@ paths:
           schema:
             type: string
             enum:
+              - indo-european
+              - nordic
               - latin
               - cyrillic
               - greek
@@ -354,13 +356,20 @@ components:
           example: "2022-01-02T20:30:45Z"
         languageFamily:
           type: string
-          example: "Nordic"
+          example: "nordic"
         language:
           type: string
-          example: "Swedish"
+          example: "se"
+        languageFamilySubgroup:
+          type: string
+          example: "scandinavian"
         formal:
           type: boolean
           description: "Indicates if the greeting is formal or informal"
+          example: false
+        timeOfDay:
+          type: boolean
+          description: "Indicates if the greeting is for a specific time of day"
           example: false
         information:
           type: string
@@ -387,11 +396,17 @@ components:
           example: "2022-01-02T20:30:45Z"
         languageFamily:
           type: string
-          example: "Nordic"
+          example: "nordic"
         language:
           type: string
-          example: "Swedish"
+          example: "se"
+        languageFamilySubgroup:
+          type: string
+          example: "scandinavian"
         formal:
+          type: boolean
+          example: false
+        timeOfDay:
           type: boolean
           example: false
         information:

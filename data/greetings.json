@@ -1,5 +1,273 @@
 [
-  { "id": 1, "message": "Hello" },
-  { "id": 2, "message": "Hi" },
-  { "id": 3, "message": "Howdy" }
+  {
+    "id": 1,
+    "message": "Hello",
+    "formal": false,
+    "information": "A comparatively recent form of greeting, with the first recorded instance of 'hello' used as a greeting dating back to 1827"
+  },
+  {
+    "id": 2,
+    "message": "Hi",
+    "formal": false,
+    "information": "An informal greeting that first appeared in 1862 according to the Oxford English Dictionary."
+  },
+  {
+    "id": 3,
+    "message": "Good morning",
+    "timeOfDay": true,
+    "information": "Generally used from 5:00 AM to 12:00 PM.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "id": 4,
+    "message": "Good afternoon",
+    "timeOfDay": true,
+    "information": "Generally used from 12:00 PM to 5:00 PM.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "id": 5,
+    "message": "Good evening",
+    "timeOfDay": true,
+    "information": "Generally used after 6:00 PM to 12:00 AM.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "id": 6,
+    "message": "How do you do?",
+    "formal": true,
+    "information": "Often used when meeting someone for the first time.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "id": 7,
+    "message": "Ahoy",
+    "formal": false,
+    "information": "Originally a nautical greeting, Alexander Graham Bell wanted people to use this to answer the telephone.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "id": 8,
+    "message": "What's up?",
+    "formal": false,
+    "information": "An informal slang greeting commonly used in casual situations.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "id": 9,
+    "message": "Nice to meet you",
+    "formal": true,
+    "information": "Ideal for formal occasions, especially when meeting someone for the first time.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Pleased to meet you",
+    "formal": true,
+    "information": "A variation of 'Nice to meet you,' used in formal situations.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "How have you been?",
+    "formal": true,
+    "information": "Ideal for greeting someone you met a long time ago. Often used after the main greeting.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+
+  {
+    "message": "Morning",
+    "formal": false,
+    "timeOfDay": true,
+    "information": "A shortened, informal version of 'Good morning'.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Afternoon",
+    "formal": false,
+    "timeOfDay": true,
+    "information": "A shortened, informal version of 'Good afternoon'.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Evening",
+    "formal": false,
+    "timeOfDay": true,
+    "information": "A shortened, informal version of 'Good evening'.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "How are you doing?",
+    "formal": false,
+    "information": "A casual way of asking 'How are you?'. Often used after the main greeting.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "How's it going?",
+    "formal": false,
+    "information": "Another casual way of asking about someone's well-being.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Nice to see you",
+    "formal": false,
+    "information": "Used when you have not seen the other person for a while or meet somebody unexpectedly.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "It's great to see you",
+    "formal": false,
+    "information": "A variation of 'Nice to see you,' expressing more enthusiasm.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Good to see you",
+    "formal": false,
+    "information": "Another variation of 'Nice to see you'.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Long time no see",
+    "formal": false,
+    "information": "Used when meeting someone you haven't seen in a long time.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "It's been a while",
+    "formal": false,
+    "information": "Similar to 'Long time no see,' used when reconnecting after a period of time.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Yo",
+    "formal": false,
+    "information": "An informal greeting that originated from hip-hop culture in 1990s America.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Sup",
+    "formal": false,
+    "information": "A shortened version of 'What's up?', very informal.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Heyyy",
+    "formal": false,
+    "information": "An informal, enthusiastic variation of 'Hey' often used in text messages.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Are you OK?",
+    "formal": false,
+    "information": "A British slang version of 'Hello. How are you?'",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Alright, mate?",
+    "formal": false,
+    "information": "A very common slang way to say a chilled-out 'Hi' to a friend, especially in British English.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Alright?",
+    "formal": false,
+    "information": "A shortened version of 'Alright, mate?'",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Hiya",
+    "formal": false,
+    "information": "A very common way of saying 'hello', especially in the North of England.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "Hey there",
+    "formal": false,
+    "information": "A super friendly greeting that shows excitement when meeting close friends or new acquaintances.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "What's happening?",
+    "formal": false,
+    "information": "A casual and relaxed slang greeting to ask someone what's going on in their lives.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "What's going on?",
+    "formal": false,
+    "information": "Similar to 'What's happening?', a casual way to greet and inquire about someone's current situation.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "How's things?",
+    "formal": false,
+    "information": "A common slang greeting or follow-up question between friends and family.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  },
+  {
+    "message": "How's life?",
+    "formal": false,
+    "information": "Similar to 'How's things?', used between people who are comfortable with each other.",
+    "language": "en",
+    "languageFamily": "indo-european",
+    "languageFamilySubgroup": "west-germanic"
+  }
 ]

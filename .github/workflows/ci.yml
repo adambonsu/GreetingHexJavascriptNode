@@ -19,4 +19,5 @@ jobs:
     needs: [linting, run-functional-tests]
     permissions:
       contents: read
+    secrets: inherit
     uses: ./.github/workflows/build-and-publish-image.yml

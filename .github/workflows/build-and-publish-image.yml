@@ -1,0 +1,30 @@
+name: BuildAndPublishImage
+run-name: "BuildAndPublishImage run by @${{ github.actor }}, event: ${{ github.event_name }}"
+on:
+  workflow_call:
+concurrency:
+  group: build-and-publish-image-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  build-and-publish-image:
+    runs-on: ubuntu-latest
+    env:
+      APP_VERSION: ${{ github.sha }}
+      DOCKER_IMAGE: greeting-hex-javascript-node
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: |
+          docker build \
+              -f ./docker/Dockerfile \
+              -t $DOCKER_IMAGE:$APP_VERSION \
+              ./
+      - name: Publish to ECR
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}
+          docker tag $DOCKER_IMAGE:$APP_VERSION ${{ secrets.ECR_REGISTRY }}:$APP_VERSION
+          docker push ${{ secrets.ECR_REGISTRY }}:$APP_VERSION

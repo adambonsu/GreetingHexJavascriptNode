@@ -9,4 +9,6 @@ fileignoreconfig:
     checksum: f54bf47fe7462489e609ab11a9c7872017344c86baa9502da365bd1f3ef19558
   - filename: .gitignore
     checksum: 2b82df4aec9bfb16f3ce353b9fefcca9285351c28367e4aeb741475a3a710381
+  - filename: .github/workflows/build-and-publish-image.yml
+    checksum: 867bd3b41063652d14462e6dc71d0c14efda6d8a2fb23cb6bf5b18ed4fd21075
     version: ""

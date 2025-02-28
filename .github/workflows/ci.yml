@@ -15,3 +15,8 @@ jobs:
     permissions:
       contents: read
     uses: ./.github/workflows/functional-tests.yml
+  build-and-publish-image:
+    needs: [linting, run-functional-tests]
+    permissions:
+      contents: read
+    uses: ./.github/workflows/build-and-publish-image.yml

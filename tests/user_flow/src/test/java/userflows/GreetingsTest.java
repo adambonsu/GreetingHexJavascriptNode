@@ -44,42 +44,49 @@ public class GreetingsTest {
 			.body("[0]", hasKey("message"))
 			.body("[0].message", allOf(isA(String.class), not(emptyString())))
 			.body("[0]", anyOf(
-							hasKey("language"),
+							allOf(hasKey("language"),
+								hasEntry(is("language"), allOf(isA(String.class), not(emptyString())))),
 							not(hasKey("language")
 						)
 			))
 			.body("[0]", anyOf(
-					hasKey("languageFamily"),
+							allOf(hasKey("languageFamily"),
+									hasEntry(is("languageFamily"), allOf(isA(String.class), not(emptyString())))),
 					not(hasKey("languageFamily")
 				)
 
 			))
 			.body("[0]", anyOf(
-					hasKey("languageFamilySubgroup"),
+					allOf(hasKey("languageFamilySubgroup"),
+							hasEntry(is("languageFamilySubgroup"), allOf(isA(String.class), not(emptyString())))),
 					not(hasKey("languageFamilySubgroup")
 				)
 
 			))
 			.body("[0]", anyOf(
-					hasKey("formal"),
+					allOf(hasKey("formal"),
+							hasEntry(is("formal"), allOf(isA(Boolean.class), not(emptyString())))),
 					not(hasKey("formal")
 				)
 
 			))
 			.body("[0]", anyOf(
-					hasKey("timeOfDay"),
+					allOf(hasKey("timeOfDay"),
+							hasEntry(is("timeOfDay"), allOf(isA(Boolean.class), not(emptyString())))),
 					not(hasKey("timeOfDay")
 				)
 
 			))
 			.body("[0]", anyOf(
-					hasKey("createdAt"),
+					allOf(hasKey("createdAt"),
+							hasEntry(is("createdAt"), allOf(isA(String.class), not(emptyString())))),
 					not(hasKey("createdAt")
 				)
 
 			))
 			.body("[0]", anyOf(
-					hasKey("updatedAt"),
+					allOf(hasKey("updatedAt"),
+							hasEntry(is("updatedAt"), allOf(isA(String.class), not(emptyString())))),
 					not(hasKey("updatedAt")
 				)
 

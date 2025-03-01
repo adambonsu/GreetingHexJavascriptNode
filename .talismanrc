@@ -5,8 +5,6 @@ fileignoreconfig:
     checksum: ccc17022a4cccea771acc5e720f9df216d4600355deccd26c8375c39e347aa28
   - filename: terraform/environment/production/main.tf
     checksum: fd0c7bf8b818adeb36e9a0a71b65b42b741977160cedc7928bb85bc56cbf1be6
-  - filename: terraform/environments/production/.terraform.lock.hcl
-    checksum: f54bf47fe7462489e609ab11a9c7872017344c86baa9502da365bd1f3ef19558
   - filename: .gitignore
     checksum: 2b82df4aec9bfb16f3ce353b9fefcca9285351c28367e4aeb741475a3a710381
   - filename: .github/workflows/build-and-publish-image.yml
@@ -17,4 +15,6 @@ fileignoreconfig:
     checksum: 88274efbb01f36398c2052cab81cf8df9b7625e586f45700c7663f1ca8e97516
   - filename: .github/workflows/cd.yml
     checksum: 96c44406ede99adcf9cdf1db39330dbdeeabbfa1ebeb424822ff4572eb303ad9
+  - filename: terraform/environments/production/.terraform.lock.hcl
+    checksum: 316f64ba23df4f124b92c5c0774aebc729c604869eccfd762e722852b53c8ad3
     version: ""

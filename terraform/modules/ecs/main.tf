@@ -67,7 +67,6 @@ resource "aws_ecs_task_definition" "this" {
             logConfiguration = {
                 logDriver = "awslogs"
                 options = {
-                    awslogs-create-group = "true"
                     awslogs-group         = aws_cloudwatch_log_group.ecs_logs.name
                     awslogs-region        = var.region
                     awslogs-stream-prefix = "ecs"
@@ -85,12 +84,12 @@ resource "aws_cloudwatch_log_group" "ecs_logs" {
 
   lifecycle {
     ignore_changes = [ name ]
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
 resource "aws_lb" "this" {
-    name = "${var.aws_lb_name}-${random_id.lb_suffix.hex}"
+    name = var.aws_lb_name
     internal = false
     load_balancer_type = "application"
     subnets = var.public_subnet_ids
@@ -102,12 +101,12 @@ resource "aws_lb" "this" {
     }
 }
 
-resource "random_id" "lb_suffix" {
-    byte_length = 4
+data "external" "git_sha" {
+  program = ["sh", "-c", "echo '{\"sha\":\"'$(git rev-parse --short HEAD)'\"}'"]
 }
 
 resource "aws_lb_target_group" "this" {
-    name = "${var.aws_lb_target_group_name}-${random_id.tg_suffix.hex}"
+    name = substr("${var.aws_lb_target_group_name}-${data.external.git_sha.result.sha}", 0, 32)
     port = var.aws_security_group_port
     protocol = "HTTP"
     target_type = "ip"

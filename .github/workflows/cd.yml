@@ -21,9 +21,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.3.0 # Specify the desired version
-      - name: Verify Terraform installation
-        run: terraform --version
+          terraform_version: 1.10.5
       - name: Terraform Init
         run: |
           terraform init
@@ -43,8 +41,11 @@ jobs:
         if: always()
         run: |
           terraform workspace select default
-          terraform workspace delete ${{ github.sha }}
+          terraform workspace -force delete ${{ github.sha }}
         working-directory: terraform/environments/production
+      - name: Force delete workspace if needed
+        if: failure()
+        run: terraform workspace delete -force ${{ github.sha }}
       - name: Get ALB DNS Name
         id: alb_dns
         run: |

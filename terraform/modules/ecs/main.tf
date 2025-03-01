@@ -85,11 +85,12 @@ resource "aws_cloudwatch_log_group" "ecs_logs" {
 
   lifecycle {
     ignore_changes = [ name ]
+    prevent_destroy = true
   }
 }
 
 resource "aws_lb" "this" {
-    name = var.aws_lb_name
+    name = "${varvar.aws_lb_name}-${random_id.lb_suffix.hex}"
     internal = false
     load_balancer_type = "application"
     subnets = var.public_subnet_ids
@@ -97,13 +98,16 @@ resource "aws_lb" "this" {
     security_groups = [aws_security_group.alb.id]
 
     lifecycle {
-      ignore_changes = [ name ]
       create_before_destroy = true
     }
 }
 
+resource "random_id" "lb_suffix" {
+    byte_length = 4
+}
+
 resource "aws_lb_target_group" "this" {
-    name = var.aws_lb_target_group_name
+    name = "${var.aws_lb_target_group_name}-${random_id.tg_suffix.hex}"
     port = var.aws_security_group_port
     protocol = "HTTP"
     target_type = "ip"
@@ -120,10 +124,13 @@ resource "aws_lb_target_group" "this" {
     }
 
     lifecycle {
-      ignore_changes = [ name ]
       create_before_destroy = true
     }
   
+}
+
+resource "random_id" "tg_suffix" {
+    byte_length = 4
 }
 
 resource "aws_lb_listener" "http" {

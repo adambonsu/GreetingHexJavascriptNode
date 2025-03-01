@@ -82,6 +82,10 @@ resource "aws_ecs_task_definition" "this" {
 resource "aws_cloudwatch_log_group" "ecs_logs" {
   name              = "/ecs/${var.aws_ecs_task_definition_family}"
   retention_in_days = var.aws_cloudwatch_log_retention_in_days
+
+  lifecycle {
+    ignore_changes = [ name ]
+  }
 }
 
 resource "aws_lb" "this" {
@@ -91,6 +95,11 @@ resource "aws_lb" "this" {
     subnets = var.public_subnet_ids
     enable_deletion_protection = false
     security_groups = [aws_security_group.alb.id]
+
+    lifecycle {
+      ignore_changes = [ name ]
+      create_before_destroy = true
+    }
 }
 
 resource "aws_lb_target_group" "this" {
@@ -108,6 +117,11 @@ resource "aws_lb_target_group" "this" {
         timeout = "5"
         path = "/"
         unhealthy_threshold = "2"
+    }
+
+    lifecycle {
+      ignore_changes = [ name ]
+      create_before_destroy = true
     }
   
 }

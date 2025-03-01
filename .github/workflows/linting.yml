@@ -2,8 +2,9 @@ name: Linting
 run-name: "Linting run by @${{ github.actor }}, event: ${{ github.event_name }}"
 on:
   workflow_call:
-  workflow_dispatch:
-
+concurrency:
+  group: linting-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   test-and-build:
     runs-on: ubuntu-latest

@@ -2,8 +2,9 @@ name: FunctionalTests
 run-name: "Functional Tests run by @${{ github.actor }}, event: ${{ github.event_name }}"
 on:
   workflow_call:
-  workflow_dispatch:
-
+concurrency:
+  group: functional-tests-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   test-and-build:
     runs-on: ubuntu-latest

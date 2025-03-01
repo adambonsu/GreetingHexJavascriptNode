@@ -41,7 +41,7 @@ jobs:
         if: always()
         run: |
           terraform workspace select default
-          terraform workspace -force delete ${{ github.sha }}
+          terraform workspace delete ${{ github.sha }}
         working-directory: terraform/environments/production
       - name: Force delete workspace if needed
         if: failure()

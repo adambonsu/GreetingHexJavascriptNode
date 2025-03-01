@@ -1,0 +1,81 @@
+name: CD
+run-name: "CD run by @${{ github.actor }}, event: ${{ github.event_name }}"
+on:
+  workflow_call:
+concurrency:
+  group: cd ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      alb_dns: ${{ steps.alb_dns.outputs.alb_dns }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+      - name: Terraform Init
+        run: |
+          terraform init
+        working-directory: terraform/environments/production
+      - name: Create and use new workspace
+        run: |
+          terraform workspace new ${{ github.sha }}
+          terraform workspace select ${{ github.sha }}
+      - name: Terraform Apply
+        run: |
+          terraform apply \
+            -var="container_image=${{ secrets.ECR_REGISTRY }}:${{ github.sha }}" \
+            -auto-approve
+        working-directory: terraform/environments/production
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          terraform workspace select default
+          terraform workspace delete ${{ github.sha }}
+      - name: Get ALB DNS Name
+        id: alb_dns
+        run: |
+          echo "alb_dns=$(terraform output -raw alb_dns_name)" >> $GITHUB_OUTPUT
+        working-directory: terraform/environments/production
+  wait_for_deployment:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for service to be ready
+        env:
+          GREETING_SCHEME: http
+          GREETING_HOST: ${{ needs.deploy.outputs.alb_dns }}
+          GREETING_PORT: 80
+        uses: nev7n/wait_for_response@v1
+        with:
+          url: "${{ env.GREETING_SCHEME }}://${{ env.GREETING_HOST }}:${{ env.GREETING_PORT }}"
+          responseCode: 200
+          timeout: 300000
+          interval: 10000
+  user_flows:
+    needs: [deploy, wait_for_deployment]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 23
+      - name: Install dependencies
+        run: |
+          mvn dependency:resolve
+        working-directory: tests/user_flow
+      - name: Run User Flows
+        env:
+          GREETING_SCHEME: http
+          GREETING_HOST: ${{ needs.deploy.outputs.alb_dns }}
+          GREETING_PORT: 80
+        run: |
+          mvn clean test
+        working-directory: tests/user_flow

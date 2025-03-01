@@ -23,7 +23,14 @@ public class GreetingsTest {
 	
 	@BeforeAll
 	public static void setup() {
-		RestAssured.baseURI = "http://localhost:3000";
+		String greetingScheme = System.getenv("GREETING_SCHEME");
+		String greetingHost = System.getenv("GREETING_HOST");
+		String greetingPort = System.getenv("GREETING_PORT");
+		
+		if(greetingHost == null || greetingPort == null) {
+			throw new IllegalStateException("Environment variables GREETING_SCHEME["+greetingScheme+"], HOST["+greetingHost+"] and PORT["+greetingPort+"] must be set");
+		}
+		RestAssured.baseURI = greetingScheme + "://" + greetingHost + ":" + greetingPort;
 	}
 	
 	@DisplayName("Get all greetings returns list of Greetings")

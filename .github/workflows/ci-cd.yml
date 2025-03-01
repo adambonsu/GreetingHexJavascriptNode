@@ -1,0 +1,21 @@
+name: CI-CD
+run-name: "CI-CD run by @${{ github.actor }}, event: ${{ github.event_name }}"
+on:
+  push:
+concurrency:
+  group: ci-cd ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  ci:
+    permissions:
+      contents: read
+    secrets: inherit
+    uses: ./.github/workflows/ci.yml
+
+  cd:
+    permissions:
+      contents: read
+      packages: write
+    secrets: inherit
+    uses: ./.github/workflows/cd.yml
+    needs: ci

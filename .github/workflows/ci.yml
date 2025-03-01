@@ -1,8 +1,7 @@
 name: CI
 run-name: "CI run by @${{ github.actor }}, event: ${{ github.event_name }}"
 on:
-  push:
-  workflow_dispatch:
+  workflow_call:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

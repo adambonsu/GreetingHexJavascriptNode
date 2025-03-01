@@ -90,7 +90,7 @@ resource "aws_cloudwatch_log_group" "ecs_logs" {
 }
 
 resource "aws_lb" "this" {
-    name = "${varvar.aws_lb_name}-${random_id.lb_suffix.hex}"
+    name = "${var.aws_lb_name}-${random_id.lb_suffix.hex}"
     internal = false
     load_balancer_type = "application"
     subnets = var.public_subnet_ids
